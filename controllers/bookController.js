@@ -43,7 +43,7 @@ router.post('/create', isAuth, async (req, res) => {
 
       res.render('books/details', { ...book, isOwner, isWanted });
     } catch (err) {
-      console.log(err.message);
+      // console.log(err.message);
       res.redirect('/');
     }
 });

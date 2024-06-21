@@ -14,16 +14,16 @@ exports.create = async (userId, bookData) => {
 
 exports.getAll = () => Book.find();
 
-// exports.getOne = (volcanoId) => Volcano.findById(volcanoId);
+exports.getOne = (bookId) => Book.findById(bookId);
 
-// exports.getOneDetailed = (volcanoId) => this.getOne(volcanoId).populate('owner').populate('voteList');
+exports.getOneDetailed = (bookId) => this.getOne(bookId).populate('owner').populate('wishingList');
 
-// exports.vote = async (volcanoId, userId) => {
-//     await Volcano.findByIdAndUpdate(volcanoId, { $push: { voteList: userId } });
-//     await User.findByIdAndUpdate(userId, { $push: { votedPosts: volcanoId } });
+exports.read = async (bookId, userId) => {
+    await Book.findByIdAndUpdate(bookId, { $push: { wishingList: userId } });
+    await User.findByIdAndUpdate(userId, { $push: { votedPosts: bookId } });
   
-// };
+};
 
-// exports.delete = (volcanoId) => Volcano.findByIdAndDelete(volcanoId);
+exports.delete = (bookId) => Book.findByIdAndDelete(bookId);
 
-// exports.edit = (volcanoId, volcanoData) => Volcano.findByIdAndUpdate(volcanoId, volcanoData,{ runValidators: true});
+exports.edit = (bookId, bookData) => Book.findByIdAndUpdate(bookId, bookData,{ runValidators: true});
